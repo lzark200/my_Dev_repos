@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>components and state</title>
+</head>
+<body>
+   <div id = "button-parent"></div>
+<script>
+    
+    let state = { 
+        count : 0
+    }
+
+    function onButtonPress(){ // react will take care of it no need to write
+        state.count++ ;
+        buttonComponentReRender()  ; 
+    }
+    function buttonComponentReRender(){  // react will take care of it no need to write
+        document.getElementById('button-parent').innerHTML = "" ;
+        const component = buttonComponent(state.count) ; 
+        document.getElementById('button-parent').appendChild(component);
+    }
+    function buttonComponent(count){// we have to write it by our own
+        let btn = document.createElement('button') ; 
+        btn.innerHTML = `Counter ${count}` ; 
+        btn.setAttribute('onclick' , 'onButtonPress()') ;
+        return btn ; 
+    }
+    buttonComponentReRender() ;
+</script>
+</body>
+</html>
